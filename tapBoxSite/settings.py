@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+import sys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,6 +30,19 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+#Google Authentication
+#AUTHENTICATION_BACKENDS=['django.contrib.auth.backends.ModelBackend',
+ #                        'social_core.backends.google.Google.GoogleOAuth2',
+#]
+
+
+
+#SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '111844563841'
+#SOCIAL_AUTH_GOOGLE_OAUTH2_KEY_SECRET = ''
+
+
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -39,6 +54,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrap5',
+    'django.contrib.sites',
+    #'django.contrib.sites.models.Site',
+    'login',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -107,7 +130,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'EST'
+TIME_ZONE = 'America/New_York'
 
 USE_I18N = True
 
@@ -123,3 +146,24 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
+
+
+SITE_ID = 2
+LOGIN_REDIRECT_URL ='/'

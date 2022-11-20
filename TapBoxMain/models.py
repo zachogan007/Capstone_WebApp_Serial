@@ -1,6 +1,28 @@
 from django.db import models
+from django.contrib.auth.models import User
+# Create your models here.
+
 
 # Create your models here.
+class User(models.Model):
+    name = models.TextField(max_length=2000)
+    password = models.TextField(max_length=2000, default="")
+    is_logged_in = False
+
+    def __str__(self):
+        return self.name
+
+    def set_password(self, pwd):
+        self.password = pwd
+        self.is_logged_in = True
+
+    def logout(self):
+        self.password = ""
+        self.is_logged_in = False
+
+
+
+
 
 
 #models represent database tables-- variable information that we need to know
