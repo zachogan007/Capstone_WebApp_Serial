@@ -41,6 +41,7 @@ def mainpage(request):
     return render(request, 'TapBoxMain/tapboxmain.html')
 
 def logoutPage(request):
-    
-  return HttpResponse("GET YO ARSE BACK HEEYAH BOI! ON GOURD! PRAISE THE LAWD!")
+    template = loader.get_template('TapBoxMain/logout.html')
+    return render(request, 'TapBoxMain/logout.html')
+
 

@@ -3,7 +3,8 @@
 {% load static %}
 {% bootstrap_javascript %}
 {% load socialaccount %}
-
+<link rel ="stylesheet" type="text/css" href="{% static 'TapBoxMain/style.css' %}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
 <html>
 <body>
@@ -40,11 +41,21 @@
 
 <html>
 <body>
-<h1>My Google OAuth Project </h1>
 {% if user.is_authenticated %}
-  <p>Welcome, You are logged in as {{ user.username }}</p>
+  <figure class="text-center">
+  <span class = "h1" style = "color:lawngreen ;"> Welcome to TapBox, You are logged in as:</span><span  class = "h1" style="color:white ;">  {{ user.username }}</span>
+  </figure>
+  </body>
+  <div class = "footer">
+  <p style = "color:lawngreen ;"> Rendering mainpage... Please wait...</p>
+  </div>
+  <head>
+  <meta http-equiv="refresh" content="7; url=/tapbox/" />
+  </head>
 {% else %}
-  <a href="{% provider_login_url 'google' %}">Login With Google</a>
+  <figure class="text-center">
+  <a class = "btn btn-primary" href="{% provider_login_url 'google' %}" role = "button">Login With Google</a>
+  </figure>
 {% endif %}
 </body>
 </html>
