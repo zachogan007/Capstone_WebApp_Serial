@@ -97,14 +97,22 @@ WSGI_APPLICATION = 'tapBoxSite.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd1cdppbqu1cp5b',
+        'USER': 'zigkpeejbsbwcn',
+        'PASSWORD': 'ef2f3ae1bb4ab06678d4d423eac61f6617882dfd61959109e58569978f8fb2ab',
+        'HOST': 'ec2-44-205-177-160.compute-1.amazonaws.com',
+        'PORT': '5432'
     }
 }
 
+if 'test' in sys.argv:
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
