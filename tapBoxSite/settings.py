@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-0jlpz^9n@m^wach41%=3$38ytd%g8vq%fq5&+(&kt6db+c*3!9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['TapBox.herokuapp.com', '127.0.0.1', 'localhost']
 
 
 #Google Authentication
@@ -167,3 +167,7 @@ SOCIALACCOUNT_PROVIDERS = {
 
 SITE_ID = 2
 LOGIN_REDIRECT_URL ='/'
+if 'HEROKU' in os.environ:
+    import django_heroku
+
+    django_heroku.settings(locals())

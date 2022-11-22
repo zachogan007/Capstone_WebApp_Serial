@@ -37,13 +37,64 @@
 </body>
 
 
+<p>
+  <span class  = "text-left h1 text-white" > Battery Monitoring Status: </span>
 
-<p class = "text-left h1 text-white"> Battery Monitoring Status: GOOD </p>
+{% if battery %}
+<!--{% for res in reset %} -->
+ <span style = "color:lawngreen ;" class = "text-left h1 "> {battery.battery_text} </span>
+<!--{% endfor %} -->
+{% else %}
+ <span style = "color:lawngreen ;" class = "text-left h1 "> [NO STATUS DETECTED] </span>
+{% endif %}
+</p>
+
 <p>&nbsp </p> <p>&nbsp </p> <p>&nbsp </p> <p>&nbsp </p>
+
+
+
+
+
+<form method = "POST">
 <span style="margin-bottom:12cm;" class = "text-left  h1 text-white">Reset Knock Sequence: &nbsp&nbsp
-<button type="button" class="btn btn-primary btn-outline-warning" autocomplete="off">RESET KNOCK SEQUENCE</button> </span>
+  {% csrf_token %}
+<button type = "submit" value = "TRUE" class="btn btn-primary btn-outline-warning" name = "reset" autocomplete="off">RESET KNOCK SEQUENCE</button> </span>
+</form>
+
+
+
+
+
+{% if reset %}
+<ul>
+<!--{% for res in reset %} -->
+<li style = "color:lawngreen ;" class = "text-left h1 "> RESETTING.... </li>
+<!--{% endfor %} -->
+</ul>
+{% else %}
+    <!--<p>No reset info is available.</p> -->
+{% endif %}
+
+
+
+
+
+
+
+
 <p>&nbsp </p> <p>&nbsp </p> <p>&nbsp </p> <p>&nbsp </p>
-<p style="margin-bottom:24cm;" class = "text-left h1 text-white"> Previous Box Unlocks: {{logRecord.last_unlock_text}}  {{logRrecord.last_unlock_time}}</p>
+<p class = "text-left h1 text-white"> Previous Box Unlocks:</p>
+{% if time %}
+    <ul>
+    {% for log in time %}
+        <li class = "text-left h0 text-white">{{log.last_unlock_text}} &nbsp | &nbsp {{log.last_unlock_time}}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No logs are available.</p>
+{% endif %}
+
+
 
 
 
