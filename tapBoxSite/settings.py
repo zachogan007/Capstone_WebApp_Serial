@@ -42,6 +42,14 @@ DISABLE_COLLECTSTATIC=1
 
 
 
+#CSRF_COOKIE_DOMAIN = '.herokuapp.com'
+#CSRF_TRUSTED_ORIGINS = ['http://thetapbox.herokuapp.com']
+#SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+#SECURE_SSL_REDIRECT = True
+#SESSION_COOKIE_SECURE = True
+#CSRF_COOKIE_SECURE = True
+
+
 
 # Application definition
 
@@ -72,6 +80,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'tapBoxSite.urls'
@@ -93,6 +102,15 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'tapBoxSite.wsgi.application'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'TapBoxMain/static'),
+)
+
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR,  'templates'),
+    # Add to this list all the locations containing your static files 
+)
 
 
 # Database
@@ -147,8 +165,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
-
-STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = 'TapBoxMain/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
