@@ -27,9 +27,9 @@ SECRET_KEY = 'django-insecure-0jlpz^9n@m^wach41%=3$38ytd%g8vq%fq5&+(&kt6db+c*3!9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['TapBox.herokuapp.com', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['thetapbox.herokuapp.com', '127.0.0.1', 'localhost']
 
-
+DISABLE_COLLECTSTATIC=1
 #Google Authentication
 #AUTHENTICATION_BACKENDS=['django.contrib.auth.backends.ModelBackend',
  #                        'social_core.backends.google.Google.GoogleOAuth2',
